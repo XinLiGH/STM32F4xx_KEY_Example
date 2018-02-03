@@ -82,9 +82,12 @@ typedef enum
 /* Function declarations -----------------------------------------------------*/
 void KEY_Init(void);
 void KEY_DeInit(void);
+
 KEY_Status KEY_GetStatus(KEY_Pin pin);
+
 void KEY_SetShortPressCallback(KEY_Pin pin, void (*fun)(void));
 void KEY_SetLongPressCallback(KEY_Pin pin, void (*fun)(void));
+
 void KEY_ClearShortPressCallback(KEY_Pin pin);
 void KEY_ClearLongPressCallback(KEY_Pin pin);
 
