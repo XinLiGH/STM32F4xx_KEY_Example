@@ -11,13 +11,10 @@
 
 ## API
 
-* void KEY_Init(void)
-* void KEY_DeInit(void)
+* void KEY_Init(KEY_Pin pin)
+* void KEY_DeInit(KEY_Pin pin)
 * KEY_Status KEY_GetStatus(KEY_Pin pin)
-* void KEY_SetShortPressCallback(KEY_Pin pin, void (*fun)(void))
-* void KEY_SetLongPressCallback(KEY_Pin pin, void (*fun)(void))
-* void KEY_ClearShortPressCallback(KEY_Pin pin)
-* void KEY_ClearLongPressCallback(KEY_Pin pin)
+* void KEY_SetPressCallback(KEY_Pin pin, void (*fun)(KEY_Status))
 
 ## 注意
 

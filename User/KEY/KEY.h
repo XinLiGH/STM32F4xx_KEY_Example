@@ -39,17 +39,23 @@ extern "C" {
 /* Macro definitions ---------------------------------------------------------*/
 #define KEYn                            (3)
 
-#define KEY1_RCC_AHB1Periph_GPIO        RCC_AHB1Periph_GPIOC
-#define KEY1_GPIO                       GPIOC
-#define KEY1_GPIO_Pin                   GPIO_Pin_2
+#define KEY0_RCC_AHB1Periph_GPIO        RCC_AHB1Periph_GPIOE
+#define KEY0_GPIO                       GPIOE
+#define KEY0_GPIO_Pin                   GPIO_Pin_4
+#define KEY0_GPIO_PuPd                  GPIO_PuPd_UP
+#define KEY0_PRESS_STATUS               Bit_RESET
 
-#define KEY2_RCC_AHB1Periph_GPIO        RCC_AHB1Periph_GPIOC
-#define KEY2_GPIO                       GPIOC
-#define KEY2_GPIO_Pin                   GPIO_Pin_3
+#define KEY1_RCC_AHB1Periph_GPIO        RCC_AHB1Periph_GPIOE
+#define KEY1_GPIO                       GPIOE
+#define KEY1_GPIO_Pin                   GPIO_Pin_3
+#define KEY1_GPIO_PuPd                  GPIO_PuPd_UP
+#define KEY1_PRESS_STATUS               Bit_RESET
 
-#define KEY3_RCC_AHB1Periph_GPIO        RCC_AHB1Periph_GPIOC
-#define KEY3_GPIO                       GPIOC
-#define KEY3_GPIO_Pin                   GPIO_Pin_4
+#define KEY2_RCC_AHB1Periph_GPIO        RCC_AHB1Periph_GPIOE
+#define KEY2_GPIO                       GPIOE
+#define KEY2_GPIO_Pin                   GPIO_Pin_2
+#define KEY2_GPIO_PuPd                  GPIO_PuPd_UP
+#define KEY2_PRESS_STATUS               Bit_RESET
 
 #define KEY_RCC_APB1Periph_TIM          RCC_APB1Periph_TIM2
 #define KEY_TIM                         TIM2
@@ -60,14 +66,12 @@ extern "C" {
 #define KEY_TIM_IRQ_PreemptionPriority  (0)
 #define KEY_TIM_IRQ_SubPriority         (0)
 
-#define KEY_PRESS_STATUS                Bit_SET
-
 /* Type definitions ----------------------------------------------------------*/
 typedef enum
 {
-  KEY_Pin1 = 0,
-  KEY_Pin2 = 1,
-  KEY_Pin3 = 2
+  KEY_Pin0 = 0,
+  KEY_Pin1 = 1,
+  KEY_Pin2 = 2
 }KEY_Pin;
 
 typedef enum
@@ -80,16 +84,10 @@ typedef enum
 /* Variable declarations -----------------------------------------------------*/
 /* Variable definitions ------------------------------------------------------*/
 /* Function declarations -----------------------------------------------------*/
-void KEY_Init(void);
-void KEY_DeInit(void);
-
+void KEY_Init(KEY_Pin pin);
+void KEY_DeInit(KEY_Pin pin);
 KEY_Status KEY_GetStatus(KEY_Pin pin);
-
-void KEY_SetShortPressCallback(KEY_Pin pin, void (*fun)(void));
-void KEY_SetLongPressCallback(KEY_Pin pin, void (*fun)(void));
-
-void KEY_ClearShortPressCallback(KEY_Pin pin);
-void KEY_ClearLongPressCallback(KEY_Pin pin);
+void KEY_SetPressCallback(KEY_Pin pin, void (*fun)(KEY_Status));
 
 /* Function definitions ------------------------------------------------------*/
 

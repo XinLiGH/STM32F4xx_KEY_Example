@@ -1,14 +1,16 @@
-# Users file
-*.lixin
+# User files
+*.uvguix.*
 
-# Debug file
-*.lst
-*.lnp
-*.crf
-*.o
-*.d
+# Build files
 *.axf
+*.bin
+*.crf
+*.d
 *.dep
+*.hex
 *.htm
-*.sct
+*.lnp
+*.lst
 *.map
+*.o
+*.sct

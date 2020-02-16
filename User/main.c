@@ -40,8 +40,7 @@ static __IO int key2ShortPressCount = 0;
 static __IO int key2LongPressCount  = 0;
 
 /* Function declarations -----------------------------------------------------*/
-static void key1ShortPressCallback(void);
-static void key1LongPressCallback(void);
+static void key1PressCallback(KEY_Status status);
 
 /* Function definitions ------------------------------------------------------*/
 
@@ -52,9 +51,10 @@ static void key1LongPressCallback(void);
   */
 int main(void)
 {
-  KEY_Init();
-  KEY_SetShortPressCallback(KEY_Pin1, key1ShortPressCallback);
-  KEY_SetLongPressCallback(KEY_Pin1, key1LongPressCallback);
+  KEY_Init(KEY_Pin1);
+  KEY_Init(KEY_Pin2);
+  
+  KEY_SetPressCallback(KEY_Pin1, key1PressCallback);
   
   for(;;)
   {
@@ -75,21 +75,18 @@ int main(void)
 }
 
 /**
-  * @brief  Key 1 short press callback.
+  * @brief  Key 1 press callback.
   * @param  None.
   * @return None.
   */
-static void key1ShortPressCallback(void)
+static void key1PressCallback(KEY_Status status)
 {
-  key1ShortPressCount++;
-}
-
-/**
-  * @brief  Key 1 long press callback.
-  * @param  None.
-  * @return None.
-  */
-static void key1LongPressCallback(void)
-{
-  key1LongPressCount++;
+  if(status == KEY_ShortPress)
+  {
+    key1ShortPressCount++;
+  }
+  else if(status == KEY_LongPress)
+  {
+    key1LongPressCount++;
+  }
 }
